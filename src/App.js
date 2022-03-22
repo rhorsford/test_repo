@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Create from "./components/Create/Create.tsx";
+import Listing from "./components/Listing/Listing.tsx";
+import Update from "./components/Update/Update.tsx";
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="main">
+                <div className="card setting">
+                    <Route exact path="/">
+                        <Redirect to="/user/list"/>
+                    </Route>
+                    <Route exact path='/user/list' component={Listing}/>
+                    <Route exact path='/user/create' component={Create}/>
+                    <Route exact path='/user/update' component={Update}/>
+                </div>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
